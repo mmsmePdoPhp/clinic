@@ -14,10 +14,23 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
-});
+// Route::middleware('auth:api')->get('/user', function (Request $request) {
+//     return $request->user();
+// });
 
 Route::apiResource('user', 'UserController');
 
 Route::apiResource('post', 'PostController');
+
+Route::post('login', function (Request $request) {
+    return [
+        'name' => 'mohammad',
+        'data' =>
+            [
+                'email' => $request['email'],
+                'password' => $request['password']
+            ]
+    ];
+});
+
+
