@@ -24,3 +24,9 @@ Route::get('redirectIfAuthenticated', function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+
+Route::post('logi', function () {
+    return ['name'=>'mohammad']
+;
+});
