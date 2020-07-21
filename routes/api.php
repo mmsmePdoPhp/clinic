@@ -1,6 +1,8 @@
 <?php
 
 use Illuminate\Http\Request;
+use Illuminate\Routing\RouteGroup;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -18,19 +20,12 @@ use Illuminate\Support\Facades\Route;
 //     return $request->user();
 // });
 
-Route::apiResource('user', 'UserController');
+Route::group(['middleware' => ['auth:sanctum']], function () {
 
-Route::apiResource('post', 'PostController');
+    Route::apiResource('post', 'PostController');
 
-Route::post('login', function (Request $request) {
-    return [
-        'name' => 'mohammad',
-        'data' =>
-            [
-                'email' => $request['email'],
-                'password' => $request['password']
-            ]
-    ];
+    // Route::apiResource('user', 'UserController');
 });
 
+Route::apiResource('/user','UserController');
 

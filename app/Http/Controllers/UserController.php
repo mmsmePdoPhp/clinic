@@ -47,7 +47,11 @@ class UserController extends Controller
      */
     public function show($id)
     {
-        return User::findOrFail($id);
+        try {
+            return User::findOrFail($id);
+        } catch (\Throwable $th) {
+            return json_encode(['error'=>'system cant return user']);
+        }
     }
 
     /**

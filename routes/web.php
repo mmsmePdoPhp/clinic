@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Request;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -15,10 +16,11 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return ['page'=>'welcom'];
 });
 Route::get('redirectIfAuthenticated', function () {
-    return Auth::user();
+    // return Auth::user();
+    return json_encode(['name'=>'mohammad']);
 });
 
 Auth::routes();
@@ -26,7 +28,17 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 
 
-Route::post('logi', function () {
-    return ['name'=>'mohammad']
-;
+Route::group(['middleware' => ['auth:sanctum']], function () {
+
+    Route::apiResource('post', 'PostController');
+
+    // Route::apiResource('user', 'UserController');
+});
+
+Route::group(['middleware' => ['auth']], function () {
+    Route::apiResource('users', 'UserController');
+});
+
+Route::post('login', function () {
+return ['name'=>'mohammad'];
 });
