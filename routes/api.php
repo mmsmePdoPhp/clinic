@@ -24,3 +24,7 @@ Route::post('user', function (Request $request) {
 });
 
 Auth::routes();
+
+// Route::post('login', function (Request $request) {
+//     return ['name'=>"moahmmad"];
+// });
