@@ -19,11 +19,10 @@ Route::get('/', function () {
     return ['page'=>'welcom'];
 });
 Route::get('redirectIfAuthenticated', function () {
-    // return Auth::user();
-    return json_encode(['name'=>'mohammad']);
+    return Auth::user();
 });
 
-Auth::routes();
+// Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
@@ -40,5 +39,5 @@ Route::group(['middleware' => ['auth']], function () {
 });
 
 Route::post('login', function () {
-return ['name'=>'mohammad'];
+    return ['name'=>'mohammad'];
 });
